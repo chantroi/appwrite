@@ -87,7 +87,7 @@ def raw(ctx):
         return notes.get_note(note_name)
     
 def post(ctx):
-    data = ctx.req.body_raw
+    data = ctx.req.body["value"]
     url = ctx.req.url
     if not url.endswith("/"):
         url = url + "/"
