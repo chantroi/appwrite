@@ -1,6 +1,7 @@
 from .data import Note
 import os
 import names
+import json
 
 notes = Note()
 html = """
@@ -88,7 +89,7 @@ def raw(ctx):
         return notes.get_note(note_name)
     
 def post(ctx):
-    data = ctx.req.body["value"]
+    data = json.loads(ctx.req.body)["value"]
     url = ctx.req.url
     if not url.endswith("/"):
         url = url + "/"
