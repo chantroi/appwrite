@@ -109,6 +109,8 @@ def post(ctx):
     
 
 def main(ctx):
+    if "favicon" in ctx.req.path:
+        return ctx.res.redirect("https://icon-sets.iconify.design/favicon@32.png", 301)
     if ctx.req.method == "GET" and "Mozilla" in ctx.req.headers["user-agent"]:
         return ctx.res.send(get(ctx), 200, {"content-type": "text/html"})
     elif ctx.req.method == "GET":
