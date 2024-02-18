@@ -49,7 +49,7 @@ html = """
       aria-label="Take a note"
       spellcheck="false"
     >
-{}</textarea
+{content}</textarea
     >
     <script>
       const textarea = document.querySelector("textarea");
@@ -74,10 +74,10 @@ def get(ctx):
     try:
         note_content = notes.get_note(note_name)
         ctx.log(note_content)
-        return html.replace("{}", note_content)
+        return html.replace("{content}", note_content)
     except Exception as e:
         ctx.error(e)
-        return html.replace("{}", "")
+        return html.replace("{content}", "")
        
 def raw(ctx):
     if ctx.req.path ==  "/":
