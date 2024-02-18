@@ -3,11 +3,72 @@ import os
 import names
 
 notes = Note()
-html_path = os.path.realpath(__file__).replace("main.py", "index.html")
+html = """
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="https://icon-sets.iconify.design/favicon@32.png"
+      type="image/png"
+    />
+    <title>Take Notes</title>
+    <meta property="og:title" content="Take Notes" />
+    <meta name="description" content="Take notes with simplicity" />
+    <meta property="og:type" content="website" />
+    <meta
+      name="author"
+      content="https://github.com/nghiepdev/freenote.deno.dev"
+    />
+    <meta
+      property="og:image"
+      content="https://images.unsplash.com/photo-1579208581155-feeb3bbb4e60?auto=format&fit=crop&w=1170&q=80"
+    />
+    <script src="https://unpkg.com/reconnectingwebsocket@1.0.0/reconnecting-websocket.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      textarea {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea
+      autofocus
+      autocomplete="off"
+      placeholder="Task a note..."
+      aria-label="Take a note"
+      spellcheck="false"
+    >
+{}</textarea
+    >
+    <script>
+      const textarea = document.querySelector("textarea");
+
+textarea.addEventListener("input", async (event) => {
+  const value = event.target.value;
+  await fetch(window.location.href, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'text/plain',
+    },
+    body: value,
+  });
+});
+    </script>
+  </body>
+</html>
+"""
 
 def get(ctx):
-    with open(html_path, "r") as f:
-        html = f.read()
     if ctx.req.path == "/":
         note_content = ""
     else:
