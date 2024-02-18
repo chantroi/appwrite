@@ -113,4 +113,6 @@ def main(ctx):
     elif ctx.req.method == "GET":
         return ctx.res.send(raw(ctx), 200, {"content-type": "text/plain"})
     elif ctx.req.method == "POST":
+        if ctx.req.path == "/":
+            return ctx.res.send("")
         return ctx.res.redirect(post(ctx), 301)
