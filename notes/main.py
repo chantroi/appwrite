@@ -70,16 +70,13 @@ textarea.addEventListener("input", async (event) => {
 """
 
 def get(ctx):
-    if ctx.req.path == "/" or not ctx.req.path:
+    note_name = ctx.req.path.split('/')[1]
+    try:
+        note_content = notes.get_note(note_name)
+        return html.format(note_content)
+    except Exception as e:
+        ctx.error(e)
         return html.replace("{}", "")
-    else:
-        note_name = ctx.req.path.split('/')[1]
-        try:
-            note_content = notes.get_note(note_name)
-            return html.format(note_content)
-        except Exception as e:
-            ctx.error(e)
-            return html.replace("{}", "")
        
 def raw(ctx):
     if ctx.req.path ==  "/":
@@ -95,24 +92,23 @@ def post(ctx):
         url = url + "/"
     if isinstance(data, bytes):
         data = data.decode('utf-8')
-    if ctx.req.path == "/" or not ctx.req.path:
-        note_name = names.get_first_name(gender='female').lower()
+    note_name = ctx.req.path.split('/')[1]
+    try:
         notes.add_note(note_name, data)
-        return url + note_name
-    else:
-        note_name = ctx.req.path.split('/')[1]
-        try:
-            notes.add_note(note_name, data)
-        except Exception as e:
-            ctx.error(e)
-            notes.update_note(note_name, data)
-        return url
-    
+    except Exception as e:
+        ctx.error(e)
+        notes.update_note(note_name, data)
+    return url
+
 
 def main(ctx):
     if "favicon" in ctx.req.path:
         return ctx.res.redirect("https://icon-sets.iconify.design/favicon@32.png", 301)
     if ctx.req.method == "GET" and "Mozilla" in ctx.req.headers["user-agent"]:
+        if ctx.req.path == "/":
+            url = ctx.req.url
+            path = names.get_first_name(gender='female').lower()
+            return ctx.res.redirect(url + path, 301)
         return ctx.res.send(get(ctx), 200, {"content-type": "text/html"})
     elif ctx.req.method == "GET":
         return ctx.res.send(raw(ctx), 200, {"content-type": "text/plain"})
