@@ -19,3 +19,7 @@ class Note:
     def get_note(self, key):
         result = self.db.get_document('notes', 'notes', key)
         return result['value']
+        
+    def update_note(self, key, data):
+        result = self.db.update_document('notes', 'notes', key, {'value': data})
+        return result['value']
