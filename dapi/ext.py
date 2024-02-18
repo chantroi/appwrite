@@ -19,9 +19,9 @@ def dl_panda(url):
     return file_url, is_video
 
 def main(context):
-    url = context.req.query['url']
-    try:
+    url = context.req.query.get('url')
+    if url:
         file_url, is_video = dl_panda(url)
         return context.res.json({"url":file_url, "is_video":is_video})
-    except Exception as e:
-        return context.res.send(str(e), 400, {"content-type":"text/plain"})
+    else:
+        return context.res.send("No URL found", 400, {"content-type":"text/plain"})
