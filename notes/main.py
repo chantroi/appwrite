@@ -115,4 +115,5 @@ def main(ctx):
     elif ctx.req.method == "POST":
         if ctx.req.path == "/":
             return ctx.res.send("")
+        post(ctx)
         return ctx.res.send("SUCCESSFUL")
