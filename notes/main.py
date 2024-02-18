@@ -94,6 +94,7 @@ def post(ctx):
     if isinstance(data, bytes):
         data = data.decode('utf-8')
     note_name = ctx.req.path.split('/')[1]
+    ctx.log(note_name)
     try:
         notes.add_note(note_name, data)
     except Exception as e:
