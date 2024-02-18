@@ -56,7 +56,7 @@ html = """
 textarea.addEventListener("input", async (event) => {
   const value = event.target.value;
   const formData = new FormData();
-  formData.append('value', value;)
+  formData.append('value', value);
   await fetch(window.location.href, {
     method: 'POST',
     body: formData,
