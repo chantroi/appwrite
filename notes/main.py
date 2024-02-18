@@ -59,6 +59,7 @@ textarea.addEventListener("input", async (event) => {
   formData.append('value', value);
   await fetch(window.location.href, {
     method: 'POST',
+    headers: { 'Content-Type': 'multipart/form-data', },
     body: formData,
   });
 });
