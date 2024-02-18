@@ -87,6 +87,7 @@ def raw(ctx):
     
 def post(ctx):
     data = ctx.req.body_raw
+    ctx.log(data)
     url = ctx.req.url
     if not url.endswith("/"):
         url = url + "/"
