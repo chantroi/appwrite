@@ -1,1 +1,1 @@
-# Appwrite-Functions
+# Functions
