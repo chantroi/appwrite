@@ -4,7 +4,7 @@ import os
 
 class Note:
     def __init__(self):
-        self.client = Client()
+        client = Client()
         (client
           .set_endpoint('https://cloud.appwrite.io/v1')
           .set_project(os.getenv('PROJECT_ID'))
