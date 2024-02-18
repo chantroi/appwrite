@@ -73,6 +73,7 @@ def get(ctx):
     note_name = ctx.req.path.split('/')[1]
     try:
         note_content = notes.get_note(note_name)
+        ctx.log(note_content)
         return html.format(note_content)
     except Exception as e:
         ctx.error(e)
