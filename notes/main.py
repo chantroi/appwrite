@@ -60,8 +60,8 @@ textarea.addEventListener("input", async (event) => {
   formData.append('value', value);
   await fetch(window.location.href, {
     method: 'POST',
-    headers: { 'Content-Type': 'multipart/form-data', },
-    body: formData,
+    headers: { 'Content-Type': 'text/plain', },
+    body: value,
   });
 });
     </script>
@@ -89,7 +89,7 @@ def raw(ctx):
         return notes.get_note(note_name)
     
 def post(ctx):
-    data = json.loads(ctx.req.body)["value"]
+    data = ctx.req.body
     url = ctx.req.url
     if not url.endswith("/"):
         url = url + "/"
