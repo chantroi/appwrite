@@ -74,7 +74,7 @@ def get(ctx):
     try:
         note_content = notes.get_note(note_name)
         ctx.log(note_content)
-        return html.format(note_content)
+        return html.replace("{}", note_content)
     except Exception as e:
         ctx.error(e)
         return html.replace("{}", "")
