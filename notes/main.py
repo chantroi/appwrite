@@ -55,12 +55,11 @@ html = """
 
 textarea.addEventListener("input", async (event) => {
   const value = event.target.value;
+  const formData = new FormData();
+  formData.append('value', value;)
   await fetch(window.location.href, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'text/plain',
-    },
-    body: value,
+    body: formData,
   });
 });
     </script>
