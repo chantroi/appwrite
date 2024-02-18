@@ -12,6 +12,6 @@ def main(context):
         context.req.port,
         context.req.path,
         context.req.query_string,
-        json.dumps(context.req.query)
+        context.req.query
     )
     return context.res.send(response, 200, {"Content-Type": "text/plain"})
