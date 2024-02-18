@@ -70,7 +70,7 @@ textarea.addEventListener("input", async (event) => {
 
 def get(ctx):
     if ctx.req.path == "/" or not ctx.req.path:
-        note_content = ""
+        return html.replace("{}", "")
     else:
         note_name = ctx.req.path.split('/')[1]
         try:
@@ -78,7 +78,7 @@ def get(ctx):
         except Exception as e:
             ctx.error(e)
             note_content = ""
-    return html.format(note_content)
+        return html.format(note_content)
        
 def raw(ctx):
     if ctx.req.path ==  "/":
