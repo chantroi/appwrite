@@ -14,7 +14,7 @@ class Note:
 
     def add_note(self, key, data):
         result = self.db.create_document('notes', 'notes', key, {'value': data})
-        return result
+        return result['value']
         
     def get_note(self, key):
         result = self.db.get_document('notes', 'notes', key)
