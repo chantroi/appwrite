@@ -115,4 +115,4 @@ def main(ctx):
     elif ctx.req.method == "POST":
         if ctx.req.path == "/":
             return ctx.res.send("")
-        return ctx.res.redirect(post(ctx), 301)
+        return ctx.res.send("SUCCESSFUL")
