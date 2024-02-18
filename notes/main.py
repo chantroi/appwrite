@@ -94,7 +94,7 @@ def post(ctx):
         url = url + "/"
     if isinstance(data, bytes):
         data = data.decode('utf-8')
-    if ctx.req.path == "/":
+    if ctx.req.path == "/" or not ctx.req.path:
         note_name = names.get_first_name(gender='female').lower()
         notes.add_note(note_name, data)
         return url + note_name
