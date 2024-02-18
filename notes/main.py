@@ -76,10 +76,10 @@ def get(ctx):
         note_name = ctx.req.path.split('/')[1]
         try:
             note_content = notes.get_note(note_name)
+            return html.format(note_content)
         except Exception as e:
             ctx.error(e)
-            note_content = ""
-        return html.format(note_content)
+            return html.replace("{}", "")
        
 def raw(ctx):
     if ctx.req.path ==  "/":
