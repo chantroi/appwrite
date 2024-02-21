@@ -3,7 +3,7 @@ import requests
 from types import SimpleNamespace
 
 def main(context):
-    data = context.req.body
+    data = context.req.body_raw
     data = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
     context.log(data)
     bot = context.req.query.get("bot")
