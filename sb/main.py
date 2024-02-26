@@ -1,7 +1,7 @@
 from seleniumbase import SB
 
 def get_url(url):
-    with SB(browser="firefox", headless=False, save_screenshot=True) as sb:
+    with SB(browser="firefox", headless=True, save_screenshot=True) as sb:
         sb.open(url)
         sb.save_screenshot("screenshot.png")
 
