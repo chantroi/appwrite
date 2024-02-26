@@ -108,7 +108,7 @@ def main(ctx):
     if "favicon" in ctx.req.path:
         return ctx.res.redirect("https://icon-sets.iconify.design/favicon@32.png", 301)
     if ctx.req.method == "GET" and "Mozilla" in ctx.req.headers["user-agent"]:
-        if ctx.req.path == "/":
+        if ctx.req.path == "/" or not ctx.req.path:
             url = ctx.req.url
             path = names.get_first_name(gender='female').lower()
             return ctx.res.redirect(url + path, 301)
