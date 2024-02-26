@@ -110,7 +110,9 @@ def main(ctx):
     if ctx.req.method == "GET" and "Mozilla" in ctx.req.headers["user-agent"]:
         if ctx.req.path == "/" or not ctx.req.path:
             url = ctx.req.url
-            path = names.get_first_name(gender='female').lower()
+            def name_():
+                return names.get_first_name(gender='female').lower()
+            path = name_()
             return ctx.res.redirect(url + path, 301)
         return ctx.res.send(get(ctx), 200, {"content-type": "text/html"})
     elif ctx.req.method == "GET":
