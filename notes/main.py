@@ -69,6 +69,9 @@ textarea.addEventListener("input", async (event) => {
 </html>
 """
 
+def name_():
+    return names.get_first_name(gender='female').lower()
+
 def get(ctx):
     note_name = ctx.req.path.split('/')[1]
     try:
@@ -110,8 +113,6 @@ def main(ctx):
     if ctx.req.method == "GET" and "Mozilla" in ctx.req.headers["user-agent"]:
         if ctx.req.path == "/" or not ctx.req.path:
             url = ctx.req.url
-            def name_():
-                return names.get_first_name(gender='female').lower()
             path = name_()
             return ctx.res.redirect(url + path, 301)
         return ctx.res.send(get(ctx), 200, {"content-type": "text/html"})
