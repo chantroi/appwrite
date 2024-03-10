@@ -2,8 +2,10 @@ from bs4 import BeautifulSoup
 import requests
 import os
 
+UA = "User Agent: Mozilla/5.0 (Linux; Android 13; M2102J20SG Build/TKQ1.221013.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/122.0.6261.66 Mobile Safari/537.36"
+
 def dl_panda(url):
-    html = requests.get("https://dlpanda.com", params={"url":url, "token":"G7eRpMaa"}).text
+    html = requests.get("https://dlpanda.com", params={"url":url, "token":"G7eRpMaa"}, headers={"User-Agent": UA}).text
     soup = BeautifulSoup(html, 'html.parser')
     video_tag = soup.find("video")
     if video_tag:
