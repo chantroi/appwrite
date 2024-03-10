@@ -12,7 +12,7 @@ def dl_panda(url):
         source_tag = video_tag.find("source")
         file_url = source_tag.get('src')
         if not file_url.startswith("http"):
-            file_url = "http:{}".format(file_url)
+            file_url = "https:{}".format(file_url)
         is_video = True
     else:
         imgtags = soup.find_all('img', style="max-width: none; max-height: none;")
