@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import os
 
+
 UA = "Mozilla/5.0 (Linux; Android 13; M2102J20SG Build/TKQ1.221013.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/122.0.6261.66 Mobile Safari/537.36"
 
 def dl_panda(url):
